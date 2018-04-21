@@ -4,7 +4,7 @@ include 'model.php';
 function getPosts()
 {
     $cx = getConnectionToDb();
-    $sql = 'SELECT * FROM blog.posts';
+    $sql = 'SELECT * FROM posts';
     $pst = $cx->query($sql);
     return $pst->fetchAll();
 }
