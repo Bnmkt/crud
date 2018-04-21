@@ -3,7 +3,7 @@
 // C'est la liste des ressources/post
 function index()
 {
-    include 'models/post.php';
+    include_once('models/post.php');
     return [
         $posts = getPosts(),
         'view' => 'postIndex.php',
@@ -23,7 +23,7 @@ function store()
         header("Location: index.php?a=create&r=post");
         die();
     };
-    include 'models/post.php';
+    include_once('models/post.php');
     $title = $_POST["title"];
     $body = $_POST["body"];
     $id = createPost($title, $body);
@@ -33,8 +33,8 @@ function show()
 {
     if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) return false;
     $id = $_GET['id'];
-    include 'models/post.php';
-    include 'models/comment.php';
+    include_once('models/post.php');
+    include_once('models/comment.php');
     $post = getPost($id);
     $comments = getComments($id);
     return [
@@ -69,7 +69,7 @@ function update()
         header("Location: index.php");
         die();
     };
-    include 'models/post.php';
+    include('models/post.php');
     $id = $_POST["id"];
     $title = $_POST["title"];
     $body = $_POST["body"];
@@ -82,7 +82,7 @@ function destroy()
         header("Location: index.php");
         die();
     };
-    include 'models/post.php';
+     include_once('models/post.php');
     $id = $_GET["id"];
     deletePost($id);
     header("Location: index.php");

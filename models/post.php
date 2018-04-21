@@ -1,5 +1,5 @@
 <?php
-include 'model.php';
+include_once 'model.php';
 
 function getPosts()
 {

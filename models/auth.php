@@ -1,5 +1,5 @@
 <?php
-include "model.php";
+include_once "model.php";
 function createUser($name, $password, $email){
     $cx = getConnectionToDb();
     $sql = 'INSERT INTO users (name, password, email) VALUES (:name, :password, :email)';

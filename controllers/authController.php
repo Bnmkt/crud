@@ -1,5 +1,5 @@
 <?php
-include("controller.php");
+include_once("controller.php");
 function signin(){
     $error = isset($_SESSION["error"])?$_SESSION["error"]:"";
     unset($_SESSION["error"]);
@@ -26,7 +26,7 @@ function create(){
         header("Location: index.php?a=signin&r=auth");
         exit();
     }
-    include("models/auth.php");
+    include_once("models/auth.php");
     $name = $_POST["name"];
     $pass = hash("sha256", $_POST["pass"], false);
     $pass2= hash("sha256", $_POST["pass2"], false);
@@ -58,7 +58,7 @@ function connect(){
         header("Location: index.php?a=login&r=auth");
         exit();
     }
-    include("models/auth.php");
+    include_once("models/auth.php");
     $name = $_POST["name"];
     $pass = hash("sha256",$_POST["pass"], false);
     $connect = connectUser($name, $pass);

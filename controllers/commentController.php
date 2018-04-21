@@ -48,7 +48,7 @@ function destroy(){
         header("Location: index.php");
         exit();
     }
-    include 'models/comment.php';
+    include_once('models/comment.php');
     $id = $_GET["id"];
     deleteComment($id);
     header("Location: index.php");
