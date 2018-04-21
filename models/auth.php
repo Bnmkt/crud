@@ -2,7 +2,7 @@
 include "model.php";
 function createUser($name, $password, $email){
     $cx = getConnectionToDb();
-    $sql = 'INSERT INTO blog.users (name, password, email) VALUES (:name, :password, :email)';
+    $sql = 'INSERT INTO users (name, password, email) VALUES (:name, :password, :email)';
     try{
         $pst = $cx->prepare($sql);
         $pst->execute([':name'=>$name, ':password'=>$password, ':email'=>$email]);
@@ -13,7 +13,7 @@ function createUser($name, $password, $email){
 }
 function connectUser($name, $password){
     $cx = getConnectionToDb();
-    $sql = 'SELECT id, name FROM blog.users WHERE (name = :name OR email = :name) AND password = :password';
+    $sql = 'SELECT id, name FROM users WHERE (name = :name OR email = :name) AND password = :password';
     try{
         $pst = $cx->prepare($sql);
         $pst->execute([':name'=>$name, ':password'=>$password]);

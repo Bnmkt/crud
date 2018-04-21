@@ -12,7 +12,7 @@ function getPosts()
 function getPost($id)
 {
     $cx = getConnectionToDb();
-    $sql = 'SELECT * FROM blog.posts WHERE id = :id';
+    $sql = 'SELECT * FROM posts WHERE id = :id';
     $pst = $cx->prepare($sql);
     $pst->execute([':id' => $id]);
     return $pst->fetch();
@@ -21,7 +21,7 @@ function getPost($id)
 function createPost($title, $body)
 {
     $cx = getConnectionToDb();
-    $sql = 'INSERT INTO blog.posts (title, body) VALUES (:title, :body)';
+    $sql = 'INSERT INTO posts (title, body) VALUES (:title, :body)';
     $pst = $cx->prepare($sql);
     $pst->execute([':title'=>$title, ':body'=>$body]);
     return $cx->lastInsertId();
@@ -29,14 +29,14 @@ function createPost($title, $body)
 function updatePost($id, $title, $body)
 {
     $cx = getConnectionToDb();
-    $sql = 'UPDATE blog.posts SET title = :title, body = :body WHERE id = :id';
+    $sql = 'UPDATE posts SET title = :title, body = :body WHERE id = :id';
     $pst = $cx->prepare($sql);
     $pst->execute([':title'=>$title, ':body'=>$body, ':id'=>$id]);
     return true;
 }
 function deletePost($id){
     $cx = getConnectionToDb();
-    $sql = 'DELETE FROM blog.posts WHERE id=:id';
+    $sql = 'DELETE FROM posts WHERE id=:id';
     $pst = $cx->prepare($sql);
     $pst->execute([':id'=>$id]);
     return true;
