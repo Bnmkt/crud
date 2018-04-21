@@ -5,7 +5,7 @@ function index()
 {
     include 'models/post.php';
     return [
-        $posts = getAllPosts(),
+        $posts = getPosts(),
         'view' => 'postIndex.php',
         'data' => ['pageTitle' => 'liste des publications',
             'posts' => $posts]
@@ -15,19 +15,26 @@ function create()
 {
     return [
         'view' => 'postCreate.php',
-        'data' => []
     ];
 }
 function store()
 {
-    header('location : index.php?a=show&r=post&id=1');
+    if(!isset($_POST["title"]) || !isset($_POST["body"])){
+        header("Location: index.php?a=create&r=post");
+        die();
+    };
+    include 'models/post.php';
+    $title = $_POST["title"];
+    $body = $_POST["body"];
+    $id = createPost($title, $body);
+    header("Location: index.php?a=show&r=post&id=$id");
 }
-function show($id)
+function show()
 {
     if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) return false;
     $id = $_GET['id'];
     include 'models/post.php';
-    $post = getOnePost($id);
+    $post = getPost($id);
     return [
         'view' => 'postShow.php',
         'data' => [
@@ -36,18 +43,44 @@ function show($id)
         ]
     ];
 }
-function edit($id)
+function edit()
 {
+    if(!isset($_GET["id"])){
+        header("Location: index.php");
+        exit();
+    }
+    $id = $_GET['id'];
+    include 'models/post.php';
+    $post = getPost($id);
     return [
         'view' => 'postEdit.php',
-        'data' => []
+        'data' => [
+            'pageTitle' => $post->title,
+            'post' => $post
+        ]
     ];
 }
-function update($id)
+function update()
 {
-    header("location : index.php?a=show&r=post&id=$id");
+    if(!isset($_POST["title"]) || !isset($_POST["body"]) || !isset($_POST["id"])){
+        header("Location: index.php");
+        die();
+    };
+    include 'models/post.php';
+    $id = $_POST["id"];
+    $title = $_POST["title"];
+    $body = $_POST["body"];
+    updatePost($id, $title, $body);
+    header("Location: index.php?a=show&r=post&id=$id");
 }
-function destroy($id)
+function destroy()
 {
-    header('location : index.php?a=index&r=post');
+    if(!isset($_GET["id"])){
+        header("Location: index.php");
+        die();
+    };
+    include 'models/post.php';
+    $id = $_GET["id"];
+    deletePost($id);
+    header("Location: index.php");
 }

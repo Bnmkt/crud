@@ -12,3 +12,6 @@
         } ?>
     </ol>
 </div>
+<div>
+    <a href="?a=create&r=post">Crée un post</a>
+</div>

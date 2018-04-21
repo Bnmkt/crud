@@ -1,5 +1,5 @@
 <div>
-    <h1>Hallo Create</h1>
+    <h1>Hello Create</h1>
     <form method="post" action="index.php">
         <label for="title">Titre</label>
         <input id="title" name="title" type="text" value="">

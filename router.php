@@ -12,5 +12,5 @@ if (!in_array($method . '/' . $a . '/' . $r, $routes)) {
 }
 $controllerFile = $r . 'Controller.php';
 require('controllers/' . $controllerFile);
-$data = call_user_func($a);
-var_dump($data);
+$data = call_user_func($a, $r);
+//var_dump($data);
