@@ -34,12 +34,15 @@ function show()
     if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) return false;
     $id = $_GET['id'];
     include 'models/post.php';
+    include 'models/comment.php';
     $post = getPost($id);
+    $comments = getComments($id);
     return [
         'view' => 'postShow.php',
         'data' => [
             'pageTitle' => $post->title,
-            'post' => $post
+            'post' => $post,
+            'comments'=> $comments
         ]
     ];
 }

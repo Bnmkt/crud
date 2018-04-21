@@ -13,4 +13,8 @@ return [
     'authDisconnect' => 'GET/disconnect/auth',
     'authConnect' => 'POST/connect/auth',
     'authCreate' => 'POST/create/auth',
+    'commentCreate' => 'POST/create/comment',
+    'commentEdit' => 'GET/edit/comment',
+    'commentUpdate' => 'POST/update/comment',
+    'commentDestroy' => 'GET/destroy/comment',
 ];
