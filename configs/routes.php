@@ -10,7 +10,7 @@ return [
     'postUpdate' => 'POST/update/post',
     'authLogin' => 'GET/login/auth',
     'authSignin' => 'GET/signin/auth',
-    'authDisconnect' => 'GET/signin/auth',
+    'authDisconnect' => 'GET/disconnect/auth',
     'authConnect' => 'POST/connect/auth',
     'authCreate' => 'POST/create/auth',
 ];
