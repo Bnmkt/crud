@@ -5,14 +5,18 @@
  * Date: 19/04/18
  * Time: 16:18
  */
-function isValid($var){
-    if(isset($var)){
-        if($var){
-            return true;
+
+class Controller
+{
+    function isValid($var){
+        if(isset($var)){
+            if($var){
+                return true;
+            }else{
+                return false;
+            }
         }else{
             return false;
         }
-    }else{
-        return false;
     }
 }

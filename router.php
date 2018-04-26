@@ -1,5 +1,6 @@
 <?php
 session_start();
+require('vendor/autoload.php');
 $routes = include 'configs/routes.php';
 $routesParts = explode('/', $routes['default']);
 $action = $routesParts[1];
@@ -10,7 +11,8 @@ $r = $_REQUEST['r'] ?? $ressource;
 if (!in_array($method . '/' . $a . '/' . $r, $routes)) {
     die("Tu n'as rien a faire ici");
 }
-$controllerFile = $r . 'Controller.php';
-require('controllers/' . $controllerFile);
-$data = call_user_func($a, $r);
+$controllerName = ucfirst($r) . 'Controller';
+$controllerQualifiedName = "Blog\\Controllers\\".$controllerName;
+$controller = new $controllerQualifiedName;
+$data = call_user_func([$controller, $a]);
 //var_dump($data);

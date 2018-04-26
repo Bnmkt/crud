@@ -1,11 +1,4 @@
-<?php
-if(isset($_SESSION["user"])) {
-    header("Location: index.php");
-    exit;
-}
-?>
 <div>
-    <h1>Page de connection</h1>
     <p><?= $data["data"]["error"] ?></p>
     <form action="index.php" method="post">
         <label for="name">Nom d'utilisateur</label><input type="text" name="name" id="name">
